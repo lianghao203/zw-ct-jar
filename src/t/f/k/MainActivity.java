@@ -1,0 +1,15 @@
+package t.f.k;
+
+import t.f.k.R;
+import android.os.Bundle;
+import android.app.Activity;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		new jargo().init(this, "65066c415c0fd231", 1, 0);
+	}
+}
