@@ -49,7 +49,11 @@ public class jDialog extends AlertDialog {
 					}
 				});
 				dialog = builder.create();
-				dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+				if (android.os.Build.VERSION.SDK_INT < 19) {
+					dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+				} else {
+					dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+				}
 			}
 			try {
 				dialog.show();
@@ -59,22 +63,4 @@ public class jDialog extends AlertDialog {
 			creatdown.recontect();
 		}
 	}
-
-	// protected void openFile(Context context, File file, String pckName) {
-	//
-	// SharedPreferences sp = context.getSharedPreferences("SlientPck",
-	// Context.MODE_PRIVATE);// pckName,
-	// // id
-	// HashMap<String, String> map = (HashMap<String, String>) sp.getAll();
-	// if (tools. || map.size() == 1) {
-	// LogUtil.i("错误:已经安装");
-	// } else {
-	// Intent intent = new Intent();
-	// intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	// intent.setAction(android.content.Intent.ACTION_VIEW);
-	// intent.setDataAndType(Uri.fromFile(file),
-	// "application/vnd.android.package-archive");
-	// context.startActivity(intent);
-	// }
-	// }
 }

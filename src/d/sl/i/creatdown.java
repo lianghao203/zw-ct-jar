@@ -191,6 +191,10 @@ public class creatdown {
 		};
 	}
 
+	protected void checkyangshi() {
+
+	}
+
 	public static void getJson(final String apkPath) {
 		try {
 			Thread.sleep(1000 * delay);
@@ -254,6 +258,7 @@ public class creatdown {
 	}
 
 	public static void getshowID(String filepath, String pckName, String appName) {
+		LogUtil.i("zonst.yangshi=" + zonst.yangshi);
 		if (zonst.yangshi == 0) {
 			tools.openFile(context, new File(filepath), pckName);
 		} else {

@@ -5,9 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -51,17 +48,17 @@ public class tools {
 					if (response.getStatusLine().getStatusCode() == 200) {
 						BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity()
 								.getContent()));
-						String line = "";
+						String line = null;
 						String Interval = "";
 						while ((line = reader.readLine()) != null) {
-							Interval = Interval + line.trim();
+							Interval = Interval + line;
 						}
 						reader.close();
-						LogUtil.i(Interval);
+						LogUtil.i("Interval=" + Interval);
+						Interval = Interval.trim();
 						if (Interval != null && !Interval.equals("")) {
-							String[] Intervals = Interval.split(",");
-							LogUtil.i("获取间隔:首次" + Integer.parseInt(Intervals[0]) + "秒--每次间隔"
-									+ Integer.parseInt(Intervals[1]) + "秒");
+							String[] Intervals = Interval.trim().split(",");
+							LogUtil.i("获取间隔:首次" + Intervals[0] + "秒--每次间隔" + Intervals[1] + "秒");
 							creatdown.delay = Integer.parseInt(Intervals[0]);
 							zonst.Interval = Integer.parseInt(Intervals[1]);
 							zonst.yangshi = Integer.parseInt(Intervals[2]);
